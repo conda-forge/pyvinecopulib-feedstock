@@ -17,7 +17,7 @@ build:
     - Boost_INCLUDE_DIR={{ environ['PREFIX'] }}\\Library\\include  # [win]
     - EIGEN3_INCLUDE_DIR={{ environ['PREFIX'] }}\\Library\\include\\eigen3  # [win]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   build:
