@@ -12,10 +12,8 @@ source:
 build:
   skip: true  # [py<38]
   script_env:
-    - Boost_INCLUDE_DIR={{ environ['PREFIX'] }}/include  # [unix]
-    - EIGEN3_INCLUDE_DIR={{ environ['PREFIX'] }}/include/eigen3  # [unix]
-    - Boost_INCLUDE_DIR={{ environ['PREFIX'] }}\\Library\\include  # [win]
-    - EIGEN3_INCLUDE_DIR={{ environ['PREFIX'] }}\\Library\\include\\eigen3  # [win]
+    - CMAKE_ARGS=-DBoost_INCLUDE_DIR={{ environ['PREFIX'] }}/include -DEIGEN3_INCLUDE_DIR={{ environ['PREFIX'] }}/include/eigen3  # [unix]
+    - CMAKE_ARGS=-DBoost_INCLUDE_DIR={{ environ['PREFIX'] }}\\Library\\include -DEIGEN3_INCLUDE_DIR={{ environ['PREFIX'] }}\\Library\\include\\eigen3  # [win]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
