@@ -30,6 +30,7 @@ requirements:
     - wheel
     - pip
     - cmake
+    - make
     - eigen
     - libboost-python-devel
   run:
