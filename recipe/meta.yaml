@@ -1,37 +1,32 @@
 {% set name = "pyvinecopulib" %}
-{% set version = "0.6.8" %}
+{% set version = "0.7.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pyvinecopulib-{{ version }}.tar.gz
-  sha256: eefd60d5453fa3da63ed292e0b3a589f07f170750bd21ad3fe4f9e8c19bde8c0
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pyvinecopulib-{{ version }}.tar.gz
+  sha256: 00cb8a6a54d35c732c5051be2624dba91672077fdcf7a44f39116fffd11adbc8
 
 build:
-  skip: True  # [py<38]
-  script_env:
-    - Boost_INCLUDE_DIR={{ environ['PREFIX'] }}/include  # [unix]
-    - EIGEN3_INCLUDE_DIR={{ environ['PREFIX'] }}/include/eigen3  # [unix]
-    - Boost_INCLUDE_DIR={{ environ['PREFIX'] }}\\Library\\include  # [win]
-    - EIGEN3_INCLUDE_DIR={{ environ['PREFIX'] }}\\Library\\include\\eigen3  # [win]
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: true  # [py<38]
+  script: {{ PYTHON }} -m pip install . -vv
   number: 0
 
 requirements:
   build:
     - {{ compiler('cxx') }}
     - {{ stdlib('c') }}
-  host:
-    - python
-    - setuptools >=64.0.0
-    - setuptools-scm >=8.0.0
-    - pybind11 >=2.10.0
-    - wheel
-    - pip
+    - cmake
+    - make
     - eigen
     - libboost-python-devel
+  host:
+    - python
+    - scikit-build-core >=0.4.3
+    - nanobind >=1.3.2
+    - pip
   run:
     - python
     - numpy >=1.14
