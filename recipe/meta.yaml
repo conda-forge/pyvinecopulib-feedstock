@@ -27,7 +27,7 @@ requirements:
     - cmake
     - make
     - eigen
-    - libboost-python-devel
+    - boost
   run:
     - python
     - numpy >=1.14
