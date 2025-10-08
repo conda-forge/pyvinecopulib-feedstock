@@ -1,5 +1,5 @@
 {% set name = "pyvinecopulib" %}
-{% set version = "0.7.3" %}
+{% set version = "0.7.5" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pyvinecopulib-{{ version }}.tar.gz
-  sha256: 2697eea43435492f00172dd9d51a757c72127ae13b13023319737e0e08679cd7
+  sha256: b964b921ec8bc40526530a78ebce4875e2682e0efa1571de92d2573e8519cca0
 
 build:
   skip: true  # [py<39]
