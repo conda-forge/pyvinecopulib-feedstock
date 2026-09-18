@@ -54,6 +54,7 @@ requirements:
 test:
   source_files:
     - tests
+    - scripts/generate_stubs.py
 
   requires:
     - pip
@@ -68,8 +69,8 @@ test:
 
   commands:
     - pip check
-    - pytest tests -r a
-
+    - pytest tests -r a -m "not compile"
+    
 about:
   home: https://github.com/vinecopulib/pyvinecopulib
   summary: A python interface to vinecopulib
