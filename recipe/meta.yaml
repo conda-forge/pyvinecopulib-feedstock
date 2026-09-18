@@ -34,7 +34,7 @@ requirements:
     - matplotlib-base >=3.0
     - networkx >=3.0
     - array-api-compat >=1.7
-    - eigen
+    - eigen >=3.4,<5
     - libboost-headers >=1.75
 
   run:
