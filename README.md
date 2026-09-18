@@ -3,7 +3,7 @@ About pyvinecopulib-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pyvinecopulib-feedstock/blob/main/LICENSE.txt)
 
-Home: https://vinecopulib.github.io/pyvinecopulib
+Home: https://github.com/vinecopulib/pyvinecopulib
 
 Package license: MIT
 
@@ -11,7 +11,7 @@ Summary: A python interface to vinecopulib
 
 Development: https://github.com/vinecopulib/pyvinecopulib
 
-Documentation: https://vinecopulib.github.io/pyvinecopulib/
+Documentation: https://pyvinecopulib.readthedocs.io
 
 pyvinecopulib is the Python interface to vinecopulib, a header-only C++ library for vine copula models based on Eigen. It provides inference algorithms for both bivariate and vine copula models, with nonparametric and multi-parameter families, scikit-learn-compatible estimators, and an extensible protocol-based architecture for custom bivariate and vine copula implementations, including native PyTorch backends.
 
