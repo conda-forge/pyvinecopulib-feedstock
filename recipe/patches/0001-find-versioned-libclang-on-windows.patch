@@ -1,12 +1,11 @@
 diff --git a/scripts/find_libclang.py b/scripts/find_libclang.py
 --- a/scripts/find_libclang.py
 +++ b/scripts/find_libclang.py
-@@ -22,7 +22,8 @@
- PATTERNS = [
-   "libclang.so",
-   "libclang.so.*",
+@@ -25,6 +25,7 @@
    "libclang-*.so*",
    "libclang.dylib",
    "libclang.dll",
 +  "libclang-*.dll",
  ]
+ 
+ 
