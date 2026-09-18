@@ -1,5 +1,5 @@
 {% set name = "pyvinecopulib" %}
-{% set version = "0.7.5" %}
+{% set version = "1.0.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,53 +7,79 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pyvinecopulib-{{ version }}.tar.gz
-  sha256: b964b921ec8bc40526530a78ebce4875e2682e0efa1571de92d2573e8519cca0
-
+  sha256: c3bb46512f7280e6ba56451a1e974e774a01571738566cd72cdb8874b525c348
+  patches:
+    - patches/0001-find-versioned-libclang-on-windows.patch
+    
 build:
-  skip: true  # [py<39]
+  skip: true  # [py<311]
   script: {{ PYTHON }} -m pip install . -vv
-  number: 1
+  number: 0
 
 requirements:
+
   build:
     - {{ compiler('cxx') }}
     - {{ stdlib('c') }}
     - cmake
     - make
-    - eigen
-    - libboost-python-devel
+
   host:
     - python
+    - pip
     - scikit-build-core >=0.5.0
     - nanobind >=2.7.0
-    - pip
+    - python-clang >=18,<19
+    - numpy >=2.0
+    - matplotlib-base >=3.0
+    - networkx >=3.0
+    - array-api-compat >=1.7
+    - eigen >=3.4,<5
+    - libboost-headers >=1.75
+
   run:
     - python
-    - numpy >=1.14
+    - numpy >=2.0
     - matplotlib-base >=3.0
     - networkx >=3.0
     - pydot >=3.0
+    - array-api-compat >=1.7
+
+  run_constrained:
+    - scipy >=1.16
+    - scikit-learn >=1.4
+    - pandas >=2.0
+    - pytorch >=2.2
 
 test:
-  imports:
-    - pyvinecopulib
+  source_files:
+    - tests
+    - scripts/generate_stubs.py
+
   requires:
     - pip
+    - pytest >=8
+    - pytest-cov
+    - pytest-rerunfailures
+    - pytest-xdist >=3.6
+    - scipy >=1.16
+    - scikit-learn >=1.4
+    - pandas >=2.0
+    - pytorch >=2.2
+
   commands:
     - pip check
-
+    - pytest tests -r a -m "not compile"
+    
 about:
-  home: https://vinecopulib.github.io/pyvinecopulib
+  home: https://github.com/vinecopulib/pyvinecopulib
   summary: A python interface to vinecopulib
   description: |
-    pyvinecopulib is the python interface to vinecopulib, a header-only C++
-    library for vine copula models based on Eigen. It provides high-performance
-    implementations of the core features of the popular VineCopula R library, in
-    particular inference algorithms for both vine copula and bivariate copula models. 
+    pyvinecopulib is the Python interface to vinecopulib, a header-only C++ library for vine copula models based on Eigen. It provides inference algorithms for both bivariate and vine copula models, with nonparametric and multi-parameter families, scikit-learn-compatible estimators, and an extensible protocol-based architecture for custom bivariate and vine copula implementations, including native PyTorch backends.
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  doc_url: https://vinecopulib.github.io/pyvinecopulib/
+  doc_url: https://pyvinecopulib.readthedocs.io
   dev_url: https://github.com/vinecopulib/pyvinecopulib
 
 extra:
