@@ -10,29 +10,44 @@ source:
   sha256: c3bb46512f7280e6ba56451a1e974e774a01571738566cd72cdb8874b525c348
 
 build:
-  skip: true  # [py<39]
+  skip: true  # [py<311]
   script: {{ PYTHON }} -m pip install . -vv
   number: 0
 
 requirements:
+
   build:
     - {{ compiler('cxx') }}
     - {{ stdlib('c') }}
     - cmake
     - make
-    - eigen
-    - libboost-python-devel
+
   host:
     - python
+    - pip
     - scikit-build-core >=0.5.0
     - nanobind >=2.7.0
-    - pip
+    - python-clang >=18,<19
+    - numpy >=2.0
+    - matplotlib-base >=3.0
+    - networkx >=3.0
+    - array-api-compat >=1.7
+    - eigen
+    - libboost-headers >=1.75
+
   run:
     - python
-    - numpy >=1.14
+    - numpy >=2.0
     - matplotlib-base >=3.0
     - networkx >=3.0
     - pydot >=3.0
+    - array-api-compat >=1.7
+
+  run_constrained:
+    - scipy >=1.16
+    - scikit-learn >=1.4
+    - pandas >=2.0
+    - pytorch >=2.2
 
 test:
   imports:
