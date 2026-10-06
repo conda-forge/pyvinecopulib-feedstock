@@ -1,16 +1,16 @@
 {% set name = "pyvinecopulib" %}
-{% set version = "1.0.0" %}
+{% set version = "1.0.1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pyvinecopulib-{{ version }}.tar.gz
-  sha256: c3bb46512f7280e6ba56451a1e974e774a01571738566cd72cdb8874b525c348
+  url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/pyvinecopulib-{{ version }}.tar.gz
+  sha256: f1fd655d563463ee30a30c12c2389a9047d3b6ea9bec0ca1845d601f1e46b99d
   patches:
     - patches/0001-find-versioned-libclang-on-windows.patch
-    
+
 build:
   skip: true  # [py<311]
   script: {{ PYTHON }} -m pip install . -vv
@@ -70,7 +70,7 @@ test:
   commands:
     - pip check
     - pytest tests -r a -m "not compile"
-    
+
 about:
   home: https://github.com/vinecopulib/pyvinecopulib
   summary: A python interface to vinecopulib
